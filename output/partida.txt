@@ -16,3 +16,118 @@ Puntuación del jugador: 17
 Puntuación de la banca: 21
 Resultado: Perdiste!
 -----------------------------
+Nombre: andy
+Puntuación del jugador: 22
+Puntuación de la banca: 18
+Resultado: Perdiste!
+-----------------------------
+Nombre: pepe
+Puntuación del jugador: 16
+Puntuación de la banca: 21
+Resultado: Perdiste!
+-----------------------------
+Nombre: Gael
+Puntuación del jugador: 21
+Puntuación de la banca: 19
+Resultado: Ganaste!
+-----------------------------
+Nombre: Diego
+Puntuación del jugador: 19
+Puntuación de la banca: 20
+Resultado: Perdiste!
+-----------------------------
+Nombre: Alejandro
+Puntuación del jugador: 23
+Puntuación de la banca: 9
+Resultado: Perdiste!
+-----------------------------
+Nombre: alan
+Puntuación del jugador: 19
+Puntuación de la banca: 26
+Resultado: Ganaste!
+-----------------------------
+Nombre: Alejandro
+Puntuación del jugador: 21
+Puntuación de la banca: 22
+Resultado: Ganaste!
+-----------------------------
+Nombre: Alejandro
+Puntuación del jugador: 21
+Puntuación de la banca: 17
+Resultado: Ganaste!
+-----------------------------
+Nombre: Alejandro
+Puntuación del jugador: 10
+Puntuación de la banca: 19
+Resultado: Perdiste!
+-----------------------------
+Nombre: Alejandro
+Puntuación del jugador: 8
+Puntuación de la banca: 21
+Resultado: Perdiste!
+-----------------------------
+Nombre: Alejandro
+Puntuación del jugador: 8
+Puntuación de la banca: 25
+Resultado: Ganaste!
+-----------------------------
+Nombre: Alejandro
+Puntuación del jugador: 17
+Puntuación de la banca: 26
+Resultado: Ganaste!
+-----------------------------
+Nombre: Alejandro
+Puntuación del jugador: 22
+Puntuación de la banca: 8
+Resultado: Perdiste!
+-----------------------------
+Nombre: alan
+Puntuación del jugador: 22
+Puntuación de la banca: 18
+Resultado: Perdiste!
+-----------------------------
+Nombre: Alejandro
+Puntuación del jugador: 22
+Puntuación de la banca: 18
+Resultado: Perdiste!
+-----------------------------
+Nombre: alejandro
+Puntuación del jugador: 26
+Puntuación de la banca: 13
+Resultado: Perdiste!
+-----------------------------
+Nombre: andres
+Puntuación del jugador: 24
+Puntuación de la banca: 12
+Resultado: Perdiste!
+-----------------------------
+Nombre: pulisic
+Puntuación del jugador: 23
+Puntuación de la banca: 19
+Resultado: Perdiste!
+-----------------------------
+Nombre: pirlo
+Puntuación del jugador: 22
+Puntuación de la banca: 11
+Resultado: Perdiste!
+-----------------------------
+Nombre: messi
+Puntuación del jugador: 17
+Puntuación de la banca: 19
+Resultado: Perdiste!
+-----------------------------
+Nombre: Pamilon
+Puntuación del jugador: 16
+Puntuación de la banca: 17
+Resultado: Perdiste!
+-----------------------------
+Nombre: Alejandro
+Puntuación del jugador: 23
+Puntuación de la banca: 12
+Resultado: Perdiste!
+-----------------------------
+Nombre: Pamila
+Puntuación del jugador: 19
+Puntuación de la banca: 17
+Resultado: Ganaste!
+-----------------------------
