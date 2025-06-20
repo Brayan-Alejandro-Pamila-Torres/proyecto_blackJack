@@ -10,23 +10,21 @@
 
 
 using namespace std;
-
+//definicion de una estructura para representar la carta con su nombre, palo y valor
 struct Carta {
     string nombre;
     string palo;
     int valor;
 };
-
+//definicion de una estructura para representar al jugador con su nombre, mano, puntuacion y si esta en juego
+//la mano es un puntero a un vector de cartas para usar memoria dinamica
 struct Jugador {
     string nombre;
     vector<Carta>* mano = new vector<Carta>(); // Memoria dinámica para la mano
     int puntuacion;
     bool enJuego = true; // Indica si el jugador sigue en juego o no
 
-    // funcion que nos ayuda a liberar la memoria del jugador
-    ~Jugador() {
-        delete mano;
-    }
+    
 };
 
 vector<Carta>* crearMazo();
@@ -76,24 +74,27 @@ int main() {
 }
 
 void jugarBlackjack() {
+    //crear mazo de cartas
     vector<Carta>* mazo = crearMazo();
+    //barajar el mazo de cartas
     barajar(mazo);
     string nombre;
     string resultado;
     cout << "Ingrese su nombre: ";
     cin >> nombre;
     //volver al color normal
-        cambiarColor(7);
-
+    cambiarColor(7);
+    //crear jugador y banca
     Jugador jugador = {nombre};
     Jugador banca = {"Banca", new vector<Carta>(), 0, true};
-
+    // Asignar memoria dinámica para la mano de la banca
+    // Tomar dos cartas iniciales para el jugador y la banca
     jugador.mano->push_back(tomarCarta(mazo, jugador.mano));
     jugador.mano->push_back(tomarCarta(mazo, jugador.mano));
     banca.mano->push_back(tomarCarta(mazo, banca.mano));
     banca.mano->push_back(tomarCarta(mazo, banca.mano));
 
-
+    // Mostrar las cartas iniciales del jugador 
     cout << jugador.nombre << ", tus dos cartas iniciales son:\n";
     cambiarColor(9);
     for (const Carta& carta : *jugador.mano) {
@@ -101,14 +102,17 @@ void jugarBlackjack() {
     }
     cout<< endl<< endl;
     cambiarColor(7);
+    // Mostrar la primera carta de la banca
     cout<< "La primera carta de la banca es:\n";
     cambiarColor(9);
     cout << "- " << banca.mano->at(0).nombre << " de " << banca.mano->at(0).palo << " (Valor: " << banca.mano->at(0).valor << ")\n";
     cout<<endl;
     cambiarColor(7);
+    //realizar el calculo de puntos iniciales
     calcularPuntos(jugador);
     calcularPuntos(banca);
 
+    // Mostrar puntuaciones iniciales
     while (jugador.puntuacion < 21 && jugador.enJuego) {
         char opcion; 
         cout << "Tu puntuacion es: " << jugador.puntuacion << endl << "Quieres pedir carta (h) o plantarte (s)? ";
@@ -121,6 +125,8 @@ void jugarBlackjack() {
 
         }
 
+        // Si el jugador elige 'h', se le da la opción de tomar una carta
+        // Si el jugador elige 's', se planta y termina su turno
         if (opcion == 'h') {
             jugador.mano->push_back(tomarCarta(mazo, jugador.mano));
             calcularPuntos(jugador);
@@ -129,6 +135,7 @@ void jugarBlackjack() {
             cambiarColor(7);
             if (jugador.mano->back().nombre == "A") {
             cambiarColor(9);
+            // Si el jugador toma un As, se le pregunta si quiere 1 o 11 puntos
             cout << "Has tomado un As! quieres obtener 1 o 11 puntos?" << endl;
             cambiarColor(7);
             int puntos;
@@ -145,7 +152,6 @@ void jugarBlackjack() {
                 cout << "- " << banca.mano->at(1).nombre << " de " << banca.mano->at(1).palo 
                 << " (Valor: " << banca.mano->at(1).valor << ")\n";
                 cout << endl;
-                //poner perdiste en rojo
                 cambiarColor(12);
                 resultado = "Perdiste!";
                 cambiarColor(7);
@@ -161,7 +167,7 @@ void jugarBlackjack() {
 
         return; 
             }
-
+            
         } else if (opcion == 's') {
             jugador.enJuego = false;
             cambiarColor(9);
@@ -170,7 +176,7 @@ void jugarBlackjack() {
             break;
         }
     }
-    
+    // Si el jugador se planta o llega a 21, la banca juega
     cout<< "\nLa banca juega ahora..."<<endl;
     cout<< "La 2da carta de la banca es:\n";
     cambiarColor(9);
@@ -183,15 +189,15 @@ void jugarBlackjack() {
         cambiarColor(7);
         calcularPuntos(banca);
     }
+    // Mostrar puntuaciones finales
+    // Si la banca tiene menos de 17, toma cartas hasta alcanzar al menos 17 puntos
     if (jugador.puntuacion > 21) {
-        //poner perdiste en rojo
         cambiarColor(12);
         resultado = "Perdiste!"; 
         cout<<"La banca gana!"<<endl;
         cambiarColor(7);
         cout<<endl;
     } else if (banca.puntuacion > 21 || jugador.puntuacion > banca.puntuacion) {
-        //poner ganaste en verde
         cambiarColor(10);
         resultado = "Ganaste!";
         cambiarColor(7);
@@ -199,7 +205,6 @@ void jugarBlackjack() {
         cambiarColor(9);
         cout<<"Has empatado con la banca por lo tanto la banca gana!"<<endl;
         cout<<endl;
-        //poner perdiste en rojo
         cambiarColor(12);
         resultado = "Perdiste!";
         cambiarColor(7);
@@ -210,6 +215,7 @@ void jugarBlackjack() {
         cambiarColor(7);
         cout<<endl;
     }
+    
     if(jugador.puntuacion == 21){
         cambiarColor(9);
         cout<< "BLACKJACK del jugador !";
@@ -233,13 +239,19 @@ void jugarBlackjack() {
     delete mazo;
 }
 
+
 vector<Carta>* crearMazo() {
+    // Crear un mazo de cartas con 52 cartas
+    // Cada carta tiene un nombre, un palo y un valor
     vector<Carta>* mazo = new vector<Carta>();
     string palos[] = {"Corazones", "Diamantes", "Treboles", "Picas"};
     string nombres[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
     int valores[] = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
-
+    // Asignar valores a las cartas
+    // El As vale 11, las cartas del 2 al 10 valen su valor, y las figuras (J, Q, K) valen 10
     for (const string& palo : palos) {
+        // Iterar sobre cada palo y agregar las cartas al mazo
+        // Cada palo tiene 13 cartas
         for (int i = 0; i < 13; i++) {
             mazo->push_back({nombres[i], palo, valores[i]});
         }
@@ -249,6 +261,8 @@ vector<Carta>* crearMazo() {
 
 void barajar(vector<Carta>* mazo) {
     srand(time(0));
+    // Barajar el mazo de cartas 
+    // Recorremos el mazo y cambiamos cada carta con una carta aleatoria
     for (size_t i = 0; i < mazo->size(); i++) {
         int j = rand() % mazo->size();
         swap((*mazo)[i], (*mazo)[j]);
@@ -263,7 +277,8 @@ Carta tomarCarta(vector<Carta>* mazo, vector<Carta>* mano) {
         nuevaCarta = mazo->back();
         mazo->pop_back();
         repetido = false;
-        
+        // Verificar si la carta ya está en la mano del jugador
+        // Si la carta ya está en la mano, se vuelve a tomar una carta del mazo
         for (const Carta& carta : *mano) {
             if (carta.nombre == nuevaCarta.nombre && carta.palo == nuevaCarta.palo) {
                 repetido = true;
@@ -293,23 +308,27 @@ void calcularPuntos(Jugador& jugador) {
 
 void guardarPartida(const Jugador& jugador,const Jugador& banca, const string& resultado) {
     ofstream archivo("partida.txt", ios::app);
-    
+    // Guardar los datos de la partida en el archivo
+    // Se abre el archivo en modo append para agregar nuevas partidas sin sobrescribir las anteriores
     if (archivo.is_open()) {
         archivo << "Nombre: " << jugador.nombre << endl;
         archivo << "Puntuación del jugador: " << jugador.puntuacion << endl;
         archivo << "Puntuación de la banca: " << banca.puntuacion << endl;
         archivo << "Resultado: " << resultado << endl;
         archivo << "-----------------------------" << endl; // Separador entre partidas
+        //cerrar el archivo
         archivo.close();
     } else {
-        //mostrar en rojo el mensaje de error
         cambiarColor(12);
         cout << "Error al abrir el archivo" << endl;
     }
 }
 
 void verArchivoPuntajes() {
+    // Ver el archivo de puntajes
+    // Se abre el archivo en modo lectura para mostrar los puntajes guardados
     ifstream archivo("partida.txt");
+    // Verificar si el archivo se abrió correctamente
     string linea;
     
     if (archivo.is_open()) {
@@ -322,6 +341,7 @@ void verArchivoPuntajes() {
         cout << "No se pudo abrir el archivo de puntajes." << endl;
     }
 }
+// Cambiar el color del texto en la consola
 void cambiarColor(int color){
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }

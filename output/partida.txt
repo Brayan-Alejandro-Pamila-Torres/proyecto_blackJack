@@ -131,3 +131,18 @@ Puntuación del jugador: 19
 Puntuación de la banca: 17
 Resultado: Ganaste!
 -----------------------------
+Nombre: Diego
+Puntuación del jugador: 17
+Puntuación de la banca: 19
+Resultado: Perdiste!
+-----------------------------
+Nombre: Diego
+Puntuación del jugador: 19
+Puntuación de la banca: 19
+Resultado: Perdiste!
+-----------------------------
+Nombre: Juan
+Puntuación del jugador: 17
+Puntuación de la banca: 18
+Resultado: Perdiste!
+-----------------------------
